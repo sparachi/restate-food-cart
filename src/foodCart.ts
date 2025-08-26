@@ -1,8 +1,8 @@
 import * as restate from "@restatedev/restate-sdk";
-import { FoodItem, FoodCartState } from "./types";
+import { FoodItem, FoodCartState } from "./types.ts";
 
 export const foodCartObject = restate.object({
-    name: "foodCart",
+    name: "FoodCart",
     handlers: {
         add: async (ctx: restate.ObjectContext, req: FoodItem) => {
             // Get current state or initialize
@@ -14,12 +14,14 @@ export const foodCartObject = restate.object({
 
         remove: async (ctx: restate.ObjectContext, req: FoodItem) => {
             // Get current state or initialize
-            const state = (await ctx.get<FoodCartState>("state")) ?? { items: [] };
+            const state = (await ctx.get<FoodCartState>("state"));
+            if (!state) {
+                return `Cart is empty.`;
+            }
             state.items = state.items.filter(item => item.id !== req.id);
             await ctx.set("state", state);
             return `${req.name} removed.`;
         },
-
         getCartItems: restate.handlers.object.shared(
             async (ctx: restate.ObjectSharedContext) => {
                 const state = (await ctx.get<FoodCartState>("state")) ?? { items: [] };
@@ -29,4 +31,4 @@ export const foodCartObject = restate.object({
     },
 });
 
-restate.endpoint().bind(foodCartObject).listen();
+restate.endpoint().bind(foodCartObject).listen(8010);

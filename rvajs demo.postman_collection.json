@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "25ffd92b-b5ad-47e6-90a9-b77183f58eab",
+		"name": "rvajs demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "826640"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "delete deployment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9070/deployments/dp_10tEnLUhpb6mQ7QNZUsK1AR?force=true",
+							"host": [
+								"localhost"
+							],
+							"port": "9070",
+							"path": [
+								"deployments",
+								"dp_10tEnLUhpb6mQ7QNZUsK1AR"
+							],
+							"query": [
+								{
+									"key": "force",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list deployments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9070/deployments",
+							"host": [
+								"localhost"
+							],
+							"port": "9070",
+							"path": [
+								"deployments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FoodCart",
+			"item": []
+		},
+		{
+			"name": "Restaurant",
+			"item": []
+		},
+		{
+			"name": "addToCart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"item-001\",\n    \"name\": \"pizza\",\n    \"quantity\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/FoodCart/user1/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"FoodCart",
+						"user1",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

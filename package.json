@@ -12,8 +12,9 @@
     "lambda-build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
     "postbuild": "cd dist && zip -r index.zip index.js*",
     "lint": "eslint",
-    "auth-example": "tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/auth/app.ts",
-    "dev": "tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/auth/app.ts & tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/payment/app.ts & tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/versioning/app.ts"
+    "foodCart": "tsx watch --include ./src ./src/foodCart.ts",
+    "restaurant": "tsx watch --include ./src ./src/restaurant.ts",
+    "dev": "tsx watch --include ./src ./src/foodCart.ts & tsx watch --include ./src ./src/restaurant.ts"
   },
   "dependencies": {
     "@restatedev/restate-sdk": "^1.8.3",
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.152",
-    "esbuild": "^0.25.9"
+    "@types/node": "^24.3.0",
+    "esbuild": "^0.25.9",
+    "tsx": "^4.20.5"
   }
 }

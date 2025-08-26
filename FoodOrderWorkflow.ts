@@ -1,7 +1,7 @@
 import * as restate from "@restatedev/restate-sdk";
 
 const foodOrderWorkflow = restate.workflow({
-  name: "foodOrder",
+  name: "FoodOrderWorkflow",
   handlers: {
     run: async (
       ctx: restate.WorkflowContext,

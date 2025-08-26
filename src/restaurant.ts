@@ -1,16 +1,17 @@
 import * as restate from "@restatedev/restate-sdk";
-import { createRecurringPayment } from "./lib/payments";
-import { FoodOrderRequest } from "./types";
+import { processPayment } from "./lib/payments.ts";
+import { FoodOrderRequest } from "./types.ts";
 
 const restaurantService = restate.service({
-  name: "RestaurantService",
+  name: "Restaurant",
   handlers: {
     confirmOrder: async (ctx: restate.Context, req: FoodOrderRequest) => {
       const paymentId = ctx.rand.uuidv4();
 
       const payRef = await ctx.run(() =>
-        createRecurringPayment(req.creditCard, paymentId)
+        processPayment(req.creditCard, paymentId)
       );
+      return `Order confirmed for user ${req.userId} and payment reference is ${payRef}`;
     },
     handOverFoodItems: async (ctx: restate.Context, req: FoodOrderRequest) => {
       // Logic to hand over food items to the delivery service
@@ -20,4 +21,4 @@ const restaurantService = restate.service({
   },
 });
 
-restate.endpoint().bind(restaurantService).listen(9080);
+restate.endpoint().bind(restaurantService).listen(8011);
