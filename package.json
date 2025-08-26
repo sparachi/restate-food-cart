@@ -1,0 +1,27 @@
+{
+  "name": "rvajs-demo-restate-xstate-examples",
+  "description": "Restate + XState examples for RVA.js",
+  "license": "MIT",
+  "author": "Saikarthik Parachi",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist && rm tsconfig.tsbuildinfo || true",
+    "build": "tsc -b",
+    "prebuild": "rm -rf dist",
+    "lambda-build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "postbuild": "cd dist && zip -r index.zip index.js*",
+    "lint": "eslint",
+    "auth-example": "tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/auth/app.ts",
+    "dev": "tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/auth/app.ts & tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/payment/app.ts & tsx watch --include ../restate-xstate/src --tsconfig ./tsconfig.dev.json ./src/versioning/app.ts"
+  },
+  "dependencies": {
+    "@restatedev/restate-sdk": "^1.8.3",
+    "@restatedev/xstate": "^0.3.1",
+    "xstate": "^5.20.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.152",
+    "esbuild": "^0.25.9"
+  }
+}
