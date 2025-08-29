@@ -13,6 +13,7 @@ export const machine = setup({
       | { type: "OUT_FOR_DELIVERY" }
       | { type: "ORDER_SUBMITTED" }
       | { type: "ACCEPTED" }
+      | { type: "REJECTED" }
       | { type: "DELIVERED" }
       | { type: "PICKED_UP" },
   },

@@ -14,6 +14,8 @@
     "lint": "eslint",
     "foodCart": "tsx watch --include ./src ./src/foodCart.ts",
     "restaurant": "tsx watch --include ./src ./src/restaurant.ts",
+    "foodOrderWorkflow": "tsx watch --include ./src ./src/FoodOrderWorkflow.ts",
+    "foodOrderStateMachine": "tsx watch --include ./src ./src/FoodOrderStateMachine.ts",
     "dev": "tsx watch --include ./src ./src/foodCart.ts & tsx watch --include ./src ./src/restaurant.ts & tsx watch --include ./src ./src/FoodOrderWorkflow.ts & tsx watch --include ./src ./src/FoodOrderStateMachine.ts"
   },
   "dependencies": {
