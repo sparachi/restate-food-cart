@@ -15,11 +15,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:9070/deployments/dp_10tEnLUhpb6mQ7QNZUsK1AR?force=true",
+							"raw": "{{restateLocal}}/deployments/dp_10tEnLUhpb6mQ7QNZUsK1AR?force=true",
 							"host": [
-								"localhost"
+								"{{restateLocal}}"
 							],
-							"port": "9070",
 							"path": [
 								"deployments",
 								"dp_10tEnLUhpb6mQ7QNZUsK1AR"
@@ -40,11 +39,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:9070/deployments",
+							"raw": "{{restateLocal}}/deployments",
 							"host": [
-								"localhost"
+								"{{restateLocal}}"
 							],
-							"port": "9070",
 							"path": [
 								"deployments"
 							]
@@ -56,40 +54,224 @@
 		},
 		{
 			"name": "FoodCart",
-			"item": []
+			"item": [
+				{
+					"name": "getCartItems",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{restateLocal}}/FoodCart/user1/getCartItems",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"FoodCart",
+								"user1",
+								"getCartItems"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addToCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"item-001\",\n    \"name\": \"pizza\",\n    \"quantity\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restateLocal}}/FoodCart/user1/add",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"FoodCart",
+								"user1",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeFromCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{restateLocal}}/FoodCart/user1/remove",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"FoodCart",
+								"user1",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Restaurant",
-			"item": []
+			"item": [
+				{
+					"name": "confirmOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"user1\",\n    \"creditCard\": \"1234567890123456\",\n    \"foodItems\": [\n        {\n            \"id\": \"item-001\",\n            \"name\": \"pizza\",\n            \"quantity\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restateLocal}}/Restaurant/confirmOrder",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"Restaurant",
+								"confirmOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "handOverFoodItems",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restateLocal}}/Restaurant/pizzeria1/handOverFoodItems",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"Restaurant",
+								"pizzeria1",
+								"handOverFoodItems"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "addToCart",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": \"item-001\",\n    \"name\": \"pizza\",\n    \"quantity\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/FoodCart/user1/add",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"FoodCart",
-						"user1",
-						"add"
-					]
+			"name": "FoodOrderWorkflow",
+			"item": [
+				{
+					"name": "start",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "FoodOrderStateMachine",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{restateLocal}}/FoodOrderStateMachine/create",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"FoodOrderStateMachine",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event\": {\n        \"type\": \"REJECTED\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restateLocal}}/FoodOrderStateMachine/test/send",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"FoodOrderStateMachine",
+								"test",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "snapshot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{restateLocal}}/FoodOrderStateMachine/test/snapshot",
+							"host": [
+								"{{restateLocal}}"
+							],
+							"path": [
+								"FoodOrderStateMachine",
+								"test",
+								"snapshot"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "restateLocal",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
