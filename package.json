@@ -14,7 +14,7 @@
     "lint": "eslint",
     "foodCart": "tsx watch --include ./src ./src/foodCart.ts",
     "restaurant": "tsx watch --include ./src ./src/restaurant.ts",
-    "dev": "tsx watch --include ./src ./src/foodCart.ts & tsx watch --include ./src ./src/restaurant.ts"
+    "dev": "tsx watch --include ./src ./src/foodCart.ts & tsx watch --include ./src ./src/restaurant.ts & tsx watch --include ./src ./src/FoodOrderWorkflow.ts & tsx watch --include ./src ./src/FoodOrderStateMachine.ts"
   },
   "dependencies": {
     "@restatedev/restate-sdk": "^1.8.3",
